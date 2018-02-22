@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Calender Control</title>
+        <link rel="stylesheet" type="text/css" href="content/site.css"/>
         <!-- data-main attribute tells require.js to load
              scripts/main.js after require.js loads. -->
              <script src="../node_modules/requirejs/require.js" data-main="app"></script>
@@ -9,6 +10,20 @@
     <body>
         <h1>My Sample Project</h1>
         <ko-calender></ko-calender>
+        <div class="row">
+            <div class="col-sm-12">
+                
+                <ko-selectable params="templateRef: 'selectableTemplate', repeator: selectables"></ko-selectable>
+                <ko-selectable params="templateRef: 'selectableTemplate', repeator: selectables"></ko-selectable>
+                
+            </div>
+        </div>
+        
+
+        <script id="selectableTemplate" type="text/html">
+            <div class="selectable-item" style="height:25px; width:25px; border:1px solid #000;"></div>
+        </script>
+        
         <p>First name: <input data-bind="value: firstName" /></p>
         <p>First name capitalized: <strong data-bind="text: firstNameCaps"></strong></p>
     </body>

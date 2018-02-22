@@ -4,6 +4,7 @@
     "dependencies": {
         "bootstrap": "^3.3.7",
         "jquery": "^3.3.1",
+        "jquery-ui-dist": "^1.12.1",
         "knockout": "^3.5.0-beta",
         "requirejs": "^2.3.5",
         "text": "github:requirejs/text"
