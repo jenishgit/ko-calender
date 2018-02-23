@@ -4,15 +4,9 @@ define(['ko'], function(ko){
         this.firstNameCaps = ko.pureComputed(function() {
             return this.firstName().toUpperCase();
         }, this);
-        this.selectables = ko.observableArray([
-            { id: 1 },
-            { id: 2 },
-            { id: 3 },
-            { id: 4 },
-            { id: 5 },
-            { id: 6 },
-            { id: 7 }
-        ]);
+
+        this.startDate = new Date(2018,4,15);
+        this.endDate = new Date(2018,5,05);
     }
     return calenderViewModel;
 })
