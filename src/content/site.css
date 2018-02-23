@@ -1,3 +1,9 @@
-
 #selectable .ui-selecting { background: #CCC; }
-#selectable .ui-selected { background: #CCC; color: white; }
+#selectable .ui-selected { background: #CCC; color: black; }
+
+.calender-table thead tr td {
+    border:1px solid #000;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}

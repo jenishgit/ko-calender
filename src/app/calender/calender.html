@@ -1,2 +1,7 @@
-test calender
-<ko-selectable params="templateRef: selectableTemplateRef, repeator: collections"></ko-selectable>
+<table class="calender-table" id="selectable">
+    <thead>
+        <tr data-bind="component: {name: 'ko-selectable', params: {templateRef: selectableTemplateRef(), repeator: collections, element: $element}}">
+            
+        </tr>
+    </thead>
+</table>

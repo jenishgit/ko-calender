@@ -13,7 +13,7 @@
                 <!-- <ko-selectable params="templateRef: 'selectableTemplate', repeator: selectables"></ko-selectable>
                 <ko-selectable params="templateRef: 'selectableTemplate', repeator: selectables"></ko-selectable> -->
         <script id="selectableTemplate" type="text/html">
-            <div class="selectable-item" style="height:25px; width:25px; border:1px solid #000;" data-bind="text: $data.date.getDate()"></div>
+            <div class="selectable-item" data-bind="text: $data.date.getDate()"></div>
         </script>
         <br style="clear: both;" />
         <p>First name: <input data-bind="value: firstName" /></p>
