@@ -1,7 +1,9 @@
-<table class="calender-table" id="selectable">
+<table class="calender-table noselect" id="selectable">
     <thead>
-        <tr data-bind="component: {name: 'ko-selectable', params: {templateRef: selectableTemplateRef(), repeator: collections, element: $element}}">
+        <tr data-bind="component: {name: subComponentConfig.dateTimeHeader, params: {templateRef: templateConfig.calenderDateHeaderTemplate(), repeator: collections}}">
             
         </tr>
     </thead>
 </table>
+
+<div data-bind="component: {name: 'ko-templateLoader', params: {templateURL: 'text!app/calender/config/templates.html', element: $element}}"></div>

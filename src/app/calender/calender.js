@@ -1,11 +1,15 @@
-define(['ko', 'app/utilities/dateHelper','app/bindings/elementHandleBinding', 'app/selectable/selectable'],
-         function(ko, dateHelper, elementHandleBinding, selectableControl){
+define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBinding', 'app/selectable/selectable'
+        ,'app/calender/internalParts/dateTimeHeader', 'app/calender/utility/templateLoader'],
+         function(ko, dateHelper, elementHandleBinding, selectableControl, dateTimeHeader, templateLoader){
     ko.components.register('ko-calender',{
         viewModel: function(params){
 
-            var startDate = ko.isObservable(params.startDate) ? params.startDate : ko.observable(params.startDate);
-            var endDate = ko.isObservable(params.endDate) ? params.endDate : ko.observable(params.endDate);
-            var selectableTemplateRef = ko.isObservable(params.selectableTemplateRef) ? params.selectableTemplateRef : ko.observable(params.selectableTemplateRef);
+            var config = params.config;
+            var subComponentConfig = config.subComponentConfig;
+            var templateConfig = config.templateConfig;
+
+            var startDate = ko.isObservable(config.startDate) ? config.startDate : ko.observable(config.startDate);
+            var endDate = ko.isObservable(config.endDate) ? config.endDate : ko.observable(config.endDate);
 
             var collections = [];
 
@@ -25,8 +29,9 @@ define(['ko', 'app/utilities/dateHelper','app/bindings/elementHandleBinding', 'a
             return {
                 startDate: startDate,
                 endDate: endDate,
-                selectableTemplateRef : selectableTemplateRef,
-                collections: collections
+                collections: collections,
+                subComponentConfig: subComponentConfig,
+                templateConfig: templateConfig
             }
 
         },
