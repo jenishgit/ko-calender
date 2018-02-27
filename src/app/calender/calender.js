@@ -5,8 +5,6 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
         viewModel: function(params){
 
             var config = params.config;
-            var subComponentConfig = config.subComponentConfig;
-            var templateConfig = config.templateConfig;
 
             var startDate = ko.isObservable(config.startDate) ? config.startDate : ko.observable(config.startDate);
             var endDate = ko.isObservable(config.endDate) ? config.endDate : ko.observable(config.endDate);
@@ -31,9 +29,8 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
                 startDate: startDate,
                 endDate: endDate,
                 collections: collections,
-                subComponentConfig: subComponentConfig,
-                templateConfig: templateConfig,
-                dataSource: dataSource
+                dataSource: dataSource,
+                calenderConfig: config
             }
 
         },

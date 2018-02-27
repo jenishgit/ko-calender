@@ -5,7 +5,7 @@ define(['ko'], function(ko){
             var repeator = ko.isObservable(params.repeator) ? params.repeator : ko.observableArray(params.repeator);
             var element = params.element;
             var data = ko.isObservable(params.data) ? params.data : ko.observable(params.data);
-            var templateConfig = params.templateConfig;
+            var calenderConfig = params.calenderConfig;
 
             $(element.parentElement).bind("mousedown", function (e) {
                 e.metaKey = false; //To prevent discontigous selection
@@ -16,7 +16,7 @@ define(['ko'], function(ko){
             return {
                 templateRef: templateRef,
                 repeator: repeator,
-                templateConfig: templateConfig,
+                calenderConfig: calenderConfig,
                 data: data
             }
         },
