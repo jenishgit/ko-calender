@@ -1,7 +1,24 @@
 <script id="selectableTemplate" type="text/html">
-    <div class="selectable-item" data-bind="text: $data.date.getDate()"></div>
+    <div class="selectable-item"></div>
+    <!-- <div class="selectable-item" data-bind="text: $data.date.getDate()"></div> -->
 </script>
 
 <script id="calenderDateHeaderTemplate" type="text/html">
     <div data-bind="text: $data.date.getDate()"></div>
+</script>
+
+<script id="calenderHeaderTemplate" type="text/html">
+    <!-- ko foreach: repeator() -->
+    <th data-bind="template: $parent.templateRef">
+
+    </th>
+    <!-- /ko -->
+</script>
+
+<script id="calenderDataTemplate" type="text/html">
+    <!-- ko foreach: repeator() -->
+    <td data-bind="template: $parent.templateRef">
+
+    </td>
+    <!-- /ko -->
 </script>

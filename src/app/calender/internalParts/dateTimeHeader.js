@@ -1,4 +1,4 @@
-define(['ko'], function(ko){
+define(['ko', 'app/calender/config/templateConfig'], function(ko, templateConfig){
     ko.components.register('ko-dateTimeHeader',{
         viewModel: function(params){
             var templateRef = ko.isObservable(params.templateRef) ? params.templateRef : ko.observable(params.templateRef);
@@ -6,7 +6,8 @@ define(['ko'], function(ko){
 
             return {
                 templateRef: templateRef,
-                repeator: repeator
+                repeator: repeator,
+                templateConfig: templateConfig
             }
             
         },

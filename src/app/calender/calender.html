@@ -4,6 +4,14 @@
             
         </tr>
     </thead>
+
+    <tbody>
+        <!-- ko foreach: dataSource() -->
+        <tr data-bind="component: {name: $parent.subComponentConfig.selectable, params: {templateRef: $parent.templateConfig.selectableTemplate, repeator: $parent.collections, data: $data, element: $element}}">
+
+        </tr>
+        <!-- /ko -->
+    </tbody>
 </table>
 
 <div data-bind="component: {name: 'ko-templateLoader', params: {templateURL: 'text!app/calender/config/templates.html', element: $element}}"></div>

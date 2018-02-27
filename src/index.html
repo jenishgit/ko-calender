@@ -10,9 +10,24 @@
     <body>
         <h1>My Sample Project</h1>
         <ko-calender params="config: config"></ko-calender>
-                <!-- <ko-selectable params="templateRef: 'selectableTemplate', repeator: selectables"></ko-selectable>
-                <ko-selectable params="templateRef: 'selectableTemplate', repeator: selectables"></ko-selectable> -->
         
+        <script id="customcalenderHeaderTemplate" type="text/html">
+            <th>apartment</th>
+            <!-- ko foreach: repeator() -->
+            <th data-bind="template: $parent.templateRef">
+        
+            </th>
+            <!-- /ko -->
+        </script>
+        
+        <script id="customCalenderDataTemplate" type="text/html">
+            <td data-bind="text: data().name"></td>
+            <!-- ko foreach: repeator() -->
+            <td data-bind="template: $parent.templateRef">
+        
+            </td>
+            <!-- /ko -->
+        </script>
 
         <br style="clear: both;" />
         <p>First name: <input data-bind="value: firstName" /></p>
