@@ -1,5 +1,5 @@
-define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/templateConfig'], 
-        function(ko, calenderSubComponentConfig, templateConfig){
+define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/templateConfig', 'app/calender/config/dateProvider'], 
+        function(ko, calenderSubComponentConfig, templateConfig, dateProvider){
     var calenderViewModel = function(){
         this.firstName = ko.observable('Bert');
         this.firstNameCaps = ko.pureComputed(function() {
@@ -38,7 +38,8 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
             endDate: endDate,
             subComponentConfig: calenderSubComponentConfig,
             templateConfig: templateConfig,
-            dataSource: apartments
+            dataSource: apartments,
+            dateTimeProvider: dateProvider.getValues
         }
 
         this.config = calenderConfig;

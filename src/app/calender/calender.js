@@ -10,20 +10,7 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
             var endDate = ko.isObservable(config.endDate) ? config.endDate : ko.observable(config.endDate);
             var dataSource = config.dataSource;
 
-            var collections = [];
-
-            if(startDate() < endDate()) {
-                var k = startDate();
-                while( k < endDate() ) {
-                    k = dateHelper.addDays(k, 1);
-                    collections.push({
-                        date: k
-                    });
-                }
-            }
-            else {
-                throw new Error('start date can not be greater than end date');
-            }
+            var collections = config.dateTimeProvider(startDate, endDate);
 
             return {
                 startDate: startDate,
