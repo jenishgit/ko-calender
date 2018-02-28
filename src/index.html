@@ -13,7 +13,7 @@
         
         <script id="customcalenderHeaderTemplate" type="text/html">
             <th>apartment</th>
-            <!-- ko foreach: repeator() -->
+            <!-- ko foreach: dateTimeCollection() -->
             <th data-bind="template: $parent.templateRef">
         
             </th>
@@ -22,7 +22,7 @@
         
         <script id="customCalenderDataTemplate" type="text/html">
             <td data-bind="text: data().name"></td>
-            <!-- ko foreach: repeator() -->
+            <!-- ko foreach: dateTimeCollection() -->
             <td data-bind="template: $parent.templateRef">
         
             </td>

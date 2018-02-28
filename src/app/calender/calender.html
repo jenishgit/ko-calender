@@ -1,13 +1,13 @@
 <table class="calender-table noselect" id="selectable">
     <thead>
-        <tr data-bind="component: {name: calenderConfig.subComponentConfig.dateTimeHeader, params: {templateRef: calenderConfig.templateConfig.calenderDateHeaderTemplate(), repeator: collections, calenderConfig: calenderConfig}}">
+        <tr data-bind="component: {name: calenderConfig.subComponentConfig.dateTimeHeader, params: {templateRef: calenderConfig.templateConfig.calenderDateHeaderTemplate(), dateTimeCollection: dateTimeCollection, calenderConfig: calenderConfig}}">
             
         </tr>
     </thead>
 
     <tbody>
         <!-- ko foreach: dataSource() -->
-        <tr data-bind="component: {name: $parent.calenderConfig.subComponentConfig.selectable, params: {templateRef: $parent.calenderConfig.templateConfig.selectableTemplate, repeator: $parent.collections, data: $data, calenderConfig: $parent.calenderConfig, element: $element}}">
+        <tr data-bind="component: {name: $parent.calenderConfig.subComponentConfig.selectable, params: {templateRef: $parent.calenderConfig.templateConfig.selectableTemplate, dateTimeCollection: $parent.dateTimeCollection, data: $data, calenderConfig: $parent.calenderConfig, element: $element}}">
 
         </tr>
         <!-- /ko -->

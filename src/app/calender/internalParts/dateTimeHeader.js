@@ -2,11 +2,11 @@ define(['ko'], function(ko){
     ko.components.register('ko-dateTimeHeader',{
         viewModel: function(params){
             var templateRef = ko.isObservable(params.templateRef) ? params.templateRef : ko.observable(params.templateRef);
-            var repeator = ko.isObservable(params.repeator) ? params.repeator : ko.observableArray(params.repeator);
+            var dateTimeCollection = ko.isObservable(params.dateTimeCollection) ? params.dateTimeCollection : ko.observableArray(params.dateTimeCollection);
             var calenderConfig = params.calenderConfig;
             return {
                 templateRef: templateRef,
-                repeator: repeator,
+                dateTimeCollection: dateTimeCollection,
                 calenderConfig: calenderConfig
             }
             

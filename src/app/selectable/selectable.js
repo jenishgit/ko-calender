@@ -2,7 +2,7 @@ define(['ko'], function(ko){
     ko.components.register('ko-selectable',{
         viewModel: function(params){
             var templateRef = ko.isObservable(params.templateRef) ? params.templateRef : ko.observable(params.templateRef);
-            var repeator = ko.isObservable(params.repeator) ? params.repeator : ko.observableArray(params.repeator);
+            var dateTimeCollection = ko.isObservable(params.dateTimeCollection) ? params.dateTimeCollection : ko.observableArray(params.dateTimeCollection);
             var element = params.element;
             var data = ko.isObservable(params.data) ? params.data : ko.observable(params.data);
             var calenderConfig = params.calenderConfig;
@@ -15,7 +15,7 @@ define(['ko'], function(ko){
 
             return {
                 templateRef: templateRef,
-                repeator: repeator,
+                dateTimeCollection: dateTimeCollection,
                 calenderConfig: calenderConfig,
                 data: data
             }

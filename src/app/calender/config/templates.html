@@ -8,7 +8,7 @@
 </script>
 
 <script id="calenderHeaderTemplate" type="text/html">
-    <!-- ko foreach: repeator() -->
+    <!-- ko foreach: dateTimeCollection() -->
     <th data-bind="template: $parent.templateRef">
 
     </th>
@@ -16,7 +16,7 @@
 </script>
 
 <script id="calenderDataTemplate" type="text/html">
-    <!-- ko foreach: repeator() -->
+    <!-- ko foreach: dateTimeCollection() -->
     <td data-bind="template: $parent.templateRef">
 
     </td>

@@ -10,12 +10,12 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
             var endDate = ko.isObservable(config.endDate) ? config.endDate : ko.observable(config.endDate);
             var dataSource = config.dataSource;
 
-            var collections = config.dateTimeProvider(startDate, endDate);
+            var dateTimeCollection = config.dateTimeProvider(startDate, endDate);
 
             return {
                 startDate: startDate,
                 endDate: endDate,
-                collections: collections,
+                dateTimeCollection: dateTimeCollection,
                 dataSource: dataSource,
                 calenderConfig: config
             }
