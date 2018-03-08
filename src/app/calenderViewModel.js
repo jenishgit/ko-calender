@@ -1,4 +1,5 @@
-define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/templateConfig', 'app/calender/config/dateProvider'], 
+define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/templateConfig', 
+'app/calender/config/dateProvider', 'app/calender/bindings/draggable', 'app/calender/bindings/droppable'], 
         function(ko, calenderSubComponentConfig, templateConfig, dateProvider){
     var calenderViewModel = function(){
         this.firstName = ko.observable('Bert');
@@ -33,13 +34,40 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
         templateConfig.calenderHeaderTemplate('customcalenderHeaderTemplate');
         templateConfig.calenderDataTemplate('customCalenderDataTemplate');
 
+
+        var dragConfig = ko.observable({
+            start: function () {
+                $(this).animate({
+                    opacity: '0.5'
+                }, 250);
+            },
+            stop: function () {
+                $(this).animate({
+                    opacity: '1'
+                }, 250);
+            },
+            revert: true
+        });
+
+        var dropConfig = ko.observable({
+            drop: function () {
+        		alert('jenish');
+                $('#draggable').animate({ opacity: 0.5 }, 250).remove();
+                $(this).html('Dropped');
+            }
+        });
+
         var calenderConfig = {
             startDate: startDate,
             endDate: endDate,
             subComponentConfig: calenderSubComponentConfig,
             templateConfig: templateConfig,
             dataSource: apartments,
-            dateTimeProvider: dateProvider.getValues
+            dateTimeProvider: dateProvider.getValues,
+            dragDropConfig:{
+                drag: dragConfig,
+                drop: dropConfig
+            }
         }
 
         this.config = calenderConfig;

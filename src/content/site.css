@@ -6,6 +6,7 @@
     width: 30px;
     height: 30px;
     text-align: center;
+    margin: auto;
 }
 
 
@@ -19,3 +20,45 @@
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
   }
+
+  
+#draggable {
+    width: 150px;
+    height: 150px;
+    background: teal;
+    color: #fff;
+    line-height: 150px;
+    text-align: center;
+    
+}
+#droppable {
+    width: 150px;
+    height: 150px;
+    background: blue;
+    line-height: 150px;
+    text-align: center;
+    color: #fff;
+    display: inline-block;
+
+    -webkit-transition: width 0.25s ease-in-out;
+    -moz-transition: width 0.25s ease-in-out;
+    -o-transition: width 0.25s ease-in-out;
+    transition: width 0.25s ease-in-out;
+}
+
+@keyframes makeItSmall{
+    from {
+        width: auto;
+        height: auto; 
+    }
+
+    to {
+        width: 120px;
+        height: 120px; 
+    }
+}
+
+.ui-droppable-hover {
+    width: 140px !important;
+    height: 140px !important;
+}
