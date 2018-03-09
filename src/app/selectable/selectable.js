@@ -10,7 +10,21 @@ define(['ko'], function(ko){
             $(element.parentElement).bind("mousedown", function (e) {
                 e.metaKey = false; //To prevent discontigous selection
             }).selectable({
-                filter: "td"
+                filter: "td",
+                selected: function(event, ui) {
+                },
+                stop: function(event, ui){
+                    var selectedItems = $('.ui-selected', this);
+                    console.log(selectedItems.length);
+                    var colSpan = 0;
+                    for(var i = selectedItems.length - 1; i > 0; i--){
+                        colSpan = colSpan + selectedItems[i].colSpan;
+                        $(selectedItems[i]).remove();
+                    }
+                    selectedItems[0].colSpan  += colSpan;
+                    var t = ko.contextFor(selectedItems[0]);
+                    selectedItems.removeClass('ui-selected');
+                }
             });
 
             return {
