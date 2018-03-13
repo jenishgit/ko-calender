@@ -11,13 +11,25 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
             var dataSource = config.dataSource;
 
             var dateTimeCollection = config.dateTimeProvider(startDate, endDate);
+            var getTimeContext = function(dateTimeCollection){
+                var timeContext = [];
+                dateTimeCollection.forEach(dateTime => {
+                    timeContext.push({
+                        start: dateTime.date,
+                        end: dateTime.date
+                    });
+                });
+                return timeContext;
+            };
+            var timeContext = getTimeContext(dateTimeCollection);
 
             return {
                 startDate: startDate,
                 endDate: endDate,
-                dateTimeCollection: dateTimeCollection,
+                timeContext: timeContext,
                 dataSource: dataSource,
-                calenderConfig: config
+                calenderConfig: config,
+                dateTimeCollection: dateTimeCollection
             }
 
         },

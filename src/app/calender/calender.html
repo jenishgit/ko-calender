@@ -7,7 +7,7 @@
 
     <tbody>
         <!-- ko foreach: dataSource() -->
-        <tr data-bind="component: {name: $parent.calenderConfig.subComponentConfig.selectable, params: {templateRef: $parent.calenderConfig.templateConfig.selectableTemplate, dateTimeCollection: $parent.dateTimeCollection, data: $data, calenderConfig: $parent.calenderConfig, element: $element}}">
+        <tr data-bind="component: {name: $parent.calenderConfig.subComponentConfig.selectable, params: {templateRef: $parent.calenderConfig.templateConfig.selectableTemplate, timeContext: $parent.timeContext, data: $data, calenderConfig: $parent.calenderConfig, element: $element}}">
 
         </tr>
         <!-- /ko -->
