@@ -7,7 +7,7 @@ define(['ko'], function(ko){
             var data = ko.isObservable(params.data) ? params.data : ko.observable(params.data);
             var calenderConfig = params.calenderConfig;
 
-            $(element.parentElement).bind("mousedown", function (e) {
+            $(element).bind("mousedown", function (e) {
                 e.metaKey = false; //To prevent discontigous selection
             }).selectable({
                 filter: "td",
@@ -28,6 +28,9 @@ define(['ko'], function(ko){
                     selectedItems.removeClass('ui-selected');
                 }
             });
+
+            var instance = $(element).selectable("instance");
+            debugger;
 
             return {
                 templateRef: templateRef,
