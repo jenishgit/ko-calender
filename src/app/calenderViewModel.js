@@ -58,6 +58,9 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
         });
 
         var calenderConfig = {
+            cssClass: {
+                occupied: 'occupied'
+            },
             startDate: startDate,
             endDate: endDate,
             subComponentConfig: calenderSubComponentConfig,
