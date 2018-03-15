@@ -6,6 +6,7 @@ define(['ko'], function(ko){
             var element = params.element;
             var data = ko.isObservable(params.data) ? params.data : ko.observable(params.data);
             var calenderConfig = params.calenderConfig;
+            var events = data()[calenderConfig.eventsObservablePath]
 
             $(element).bind("mousedown", function (e) {
                 e.metaKey = false; //To prevent discontigous selection
@@ -34,7 +35,7 @@ define(['ko'], function(ko){
             }
 
             var plotData = function(data, startDate, endDate){
-                data().placements().forEach(item => {
+                data.forEach(item => {
                     if (startDate < item.startDate() && item.endDate() < endDate) {
                         setTimeout(function(){
                             var itemToBeSelected = [];
@@ -56,12 +57,20 @@ define(['ko'], function(ko){
                             }
                             $(itemToBeSelected).addClass('ui-selected');
                             onSelectionDone();
-                        }, 1000);
+                        }, 200);
                     }
                 });
             }
-            plotData(data, calenderConfig.startDate(), calenderConfig.endDate());
-            var instance = $(element).selectable("instance");
+            plotData(events(), calenderConfig.startDate(), calenderConfig.endDate());
+            
+            events.subscribe(function(changes){
+                changes.forEach(function (change) {
+                    if (change.status == 'added'){
+                        console.log('ploting data');
+                        plotData([change.value], calenderConfig.startDate(), calenderConfig.endDate());
+                    }
+                })
+            }, null, "arrayChange")
 
             return {
                 templateRef: templateRef,

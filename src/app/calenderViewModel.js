@@ -57,10 +57,26 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
             }
         });
 
+        var placement = {
+            startDate: ko.observable(new Date(2018, 4, 26)),
+            endDate: ko.observable(new Date(2018, 4, 28))
+        }
+
+        var placement2 = {
+            startDate: ko.observable(new Date(2018, 4, 30)),
+            endDate: ko.observable(new Date(2018, 5, 2))
+        }
+
+        this.addPlacement = function(){
+            apartments()[0].placements.push(placement);
+            apartments()[1].placements.push(placement2);
+        }
+
         var calenderConfig = {
             cssClass: {
                 occupied: 'occupied'
             },
+            eventsObservablePath: 'placements',
             startDate: startDate,
             endDate: endDate,
             subComponentConfig: calenderSubComponentConfig,

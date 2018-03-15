@@ -21,12 +21,16 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
                 });
                 return timeContext;
             };
-            var timeContext = getTimeContext(dateTimeCollection);
+            //var timeContext = getTimeContext(dateTimeCollection);
+
+            dataSource().forEach(function (data){
+                data.timeContext = getTimeContext(dateTimeCollection);
+            });
 
             return {
                 startDate: startDate,
                 endDate: endDate,
-                timeContext: timeContext,
+                //timeContext: timeContext,
                 dataSource: dataSource,
                 calenderConfig: config,
                 dateTimeCollection: dateTimeCollection
