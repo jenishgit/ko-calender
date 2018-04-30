@@ -8,6 +8,7 @@
              <script src="../node_modules/requirejs/require.js" data-main="app"></script>
     </head>
     <body>
+        <div data-bind="component: {name: 'ko-templateLoader', params: {templateURL: 'text!app/calender/config/templates.html', element: $element}}"></div>
         <h1>Calender</h1>
         <ko-calender params="config: config"></ko-calender>
         
@@ -23,9 +24,9 @@
         <script id="customCalenderDataTemplate" type="text/html">
             <td data-bind="text: data().name"></td>
             <!-- ko foreach: timeContext() -->
-            <td data-bind="template: $parent.templateRef">
-        
-            </td>
+                <td class="can-select" data-bind="template: $parent.templateRef">
+
+                </td>
             <!-- /ko -->
         </script>
 

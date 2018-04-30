@@ -1,4 +1,4 @@
-define(['ko'], function(ko){
+define(['ko', 'app/calender/utility/dataSelector'], function(ko, dataSelector){
     ko.components.register('ko-selectable',{
         viewModel: function(params){
             var templateRef = ko.isObservable(params.templateRef) ? params.templateRef : ko.observable(params.templateRef);
@@ -6,12 +6,13 @@ define(['ko'], function(ko){
             var element = params.element;
             var data = ko.isObservable(params.data) ? params.data : ko.observable(params.data);
             var calenderConfig = params.calenderConfig;
-            var events = data()[calenderConfig.eventsObservablePath]
+            var events = data()[calenderConfig.eventsObservablePath];
+            // var events = ko.observable(dataSelector.getFlatData(data(), calenderConfig.eventsObservablePath));
 
             $(element).bind("mousedown", function (e) {
                 e.metaKey = false; //To prevent discontigous selection
             }).selectable({
-                filter: "td",
+                filter: ".can-select",
                 selected: function(event, ui) {
                 },
                 stop: function(event, ui){

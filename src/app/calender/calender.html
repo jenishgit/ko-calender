@@ -1,3 +1,4 @@
+
 <table class="calender-table noselect" id="selectable">
     <thead>
         <tr data-bind="component: {name: calenderConfig.subComponentConfig.dateTimeHeader, params: {templateRef: calenderConfig.templateConfig.calenderDateHeaderTemplate(), dateTimeCollection: dateTimeCollection, calenderConfig: calenderConfig}}">
@@ -7,11 +8,9 @@
 
     <tbody>
         <!-- ko foreach: dataSource() -->
-        <tr data-bind="component: {name: $parent.calenderConfig.subComponentConfig.selectable, params: {templateRef: $parent.calenderConfig.templateConfig.selectableTemplate, timeContext: timeContext, data: $data, calenderConfig: $parent.calenderConfig, element: $element}}">
-
-        </tr>
+        <!-- ko template: 'dataIterator' -->
+        <!-- /ko -->
         <!-- /ko -->
     </tbody>
 </table>
 
-<div data-bind="component: {name: 'ko-templateLoader', params: {templateURL: 'text!app/calender/config/templates.html', element: $element}}"></div>

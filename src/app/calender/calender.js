@@ -24,8 +24,29 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
             //var timeContext = getTimeContext(dateTimeCollection);
 
             dataSource().forEach(function (data){
-                data.timeContext = getTimeContext(dateTimeCollection);
+                if(data.nextLevel){
+                    data[data.nextLevel]().forEach(function(data){
+                        data.timeContext = getTimeContext(dateTimeCollection);
+                    })
+                }
+                else {
+                    data.timeContext = getTimeContext(dateTimeCollection);
+                }
             });
+
+            var getRowSpan = function (data) {
+                var rowSpan = 0;
+                if(data.nextLevel){
+                    for( var i = 0; i < data[data.nextLevel]().length; i++){
+                        rowSpan = rowSpan + getRowSpan(data[data.nextLevel]()[i]);
+                    }
+                }
+                else{
+                    rowSpan = 1;
+                }
+                return rowSpan;
+            }
+            
 
             return {
                 startDate: startDate,
@@ -33,7 +54,8 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
                 //timeContext: timeContext,
                 dataSource: dataSource,
                 calenderConfig: config,
-                dateTimeCollection: dateTimeCollection
+                dateTimeCollection: dateTimeCollection,
+                getRowSpan: getRowSpan
             }
 
         },
