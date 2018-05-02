@@ -34,18 +34,7 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
                 }
             });
 
-            var getRowSpan = function (data) {
-                var rowSpan = 0;
-                if(data.nextLevel){
-                    for( var i = 0; i < data[data.nextLevel]().length; i++){
-                        rowSpan = rowSpan + getRowSpan(data[data.nextLevel]()[i]);
-                    }
-                }
-                else{
-                    rowSpan = 1;
-                }
-                return rowSpan;
-            }
+            
             
 
             return {
@@ -54,8 +43,7 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
                 //timeContext: timeContext,
                 dataSource: dataSource,
                 calenderConfig: config,
-                dateTimeCollection: dateTimeCollection,
-                getRowSpan: getRowSpan
+                dateTimeCollection: dateTimeCollection
             }
 
         },

@@ -35,13 +35,26 @@ define(['ko', 'app/calender/utility/dataSelector'], function(ko, dataSelector){
                 selectedItems.addClass(calenderConfig.cssClass.occupied);
             }
 
+            var getRowSpan = function (data) {
+                var rowSpan = 0;
+                if(data.nextLevel){
+                    for( var i = 0; i < data[data.nextLevel]().length; i++){
+                        rowSpan = rowSpan + getRowSpan(data[data.nextLevel]()[i]);
+                    }
+                }
+                else{
+                    rowSpan = 1;
+                }
+                return rowSpan;
+            }
+
             var plotData = function(data, startDate, endDate){
                 data.forEach(item => {
                     if (startDate < item.startDate() && item.endDate() < endDate) {
                         setTimeout(function(){
                             var itemToBeSelected = [];
-                            var tds = $(element).children('td');
-                            for (let index = 1; index < tds.length; index++) {
+                            var tds = $(element).children('.can-select');
+                            for (let index = 0; index < tds.length; index++) {
                                 const td = tds[index];
                                 var context = ko.contextFor(td).$data;
                                 if(context.start.getTime() == item.startDate().getTime()){
@@ -77,7 +90,8 @@ define(['ko', 'app/calender/utility/dataSelector'], function(ko, dataSelector){
                 templateRef: templateRef,
                 timeContext: timeContext,
                 calenderConfig: calenderConfig,
-                data: data
+                data: data,
+                getRowSpan: getRowSpan
             }
         },
         template: { require: 'text!app/selectable/selectable.html'},

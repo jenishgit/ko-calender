@@ -13,7 +13,8 @@
         <ko-calender params="config: config"></ko-calender>
         
         <script id="customcalenderHeaderTemplate" type="text/html">
-            <th>apartment</th>
+            <th>Apartment</th>
+            <th>Room</th>
             <!-- ko foreach: dateTimeCollection() -->
             <th data-bind="template: $parent.templateRef">
         
@@ -22,6 +23,9 @@
         </script>
         
         <script id="customCalenderDataTemplate" type="text/html">
+            <!-- ko if: $index() == 0 -->
+                <td data-bind="text: $parents[1].name, attr: {rowspan: $component.getRowSpan($parents[1])}"></td>
+            <!-- /ko -->
             <td data-bind="text: data().name"></td>
             <!-- ko foreach: timeContext() -->
                 <td class="can-select" data-bind="template: $parent.templateRef">
