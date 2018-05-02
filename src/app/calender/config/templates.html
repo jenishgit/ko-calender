@@ -23,3 +23,18 @@
     </td>
     <!-- /ko -->
 </script>
+
+<script id="dataIterator" type="text/html">
+    
+    <!-- ko if: $data.nextLevel -->
+        <!-- ko foreach: $data[$data.nextLevel] -->
+            <!-- ko template: 'dataIterator' -->
+            <!-- /ko -->
+        <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: !$data.nextLevel -->
+        <tr data-bind="component: {name: $component.calenderConfig.subComponentConfig.selectable, params: {templateRef: $component.calenderConfig.templateConfig.selectableTemplate, timeContext: timeContext, data: $data, calenderConfig: $component.calenderConfig, element: $element}}">
+
+        </tr>
+    <!-- /ko -->
+</script>

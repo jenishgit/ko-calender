@@ -1,4 +1,4 @@
-define(['ko'], function(ko){
+define(['ko', 'app/calender/utility/dataSelector'], function(ko, dataSelector){
     ko.components.register('ko-selectable',{
         viewModel: function(params){
             var templateRef = ko.isObservable(params.templateRef) ? params.templateRef : ko.observable(params.templateRef);
@@ -6,11 +6,13 @@ define(['ko'], function(ko){
             var element = params.element;
             var data = ko.isObservable(params.data) ? params.data : ko.observable(params.data);
             var calenderConfig = params.calenderConfig;
+            var events = data()[calenderConfig.eventsObservablePath];
+            // var events = ko.observable(dataSelector.getFlatData(data(), calenderConfig.eventsObservablePath));
 
             $(element).bind("mousedown", function (e) {
                 e.metaKey = false; //To prevent discontigous selection
             }).selectable({
-                filter: "td",
+                filter: ".can-select",
                 selected: function(event, ui) {
                 },
                 stop: function(event, ui){
@@ -33,13 +35,26 @@ define(['ko'], function(ko){
                 selectedItems.addClass(calenderConfig.cssClass.occupied);
             }
 
+            var getRowSpan = function (data) {
+                var rowSpan = 0;
+                if(data.nextLevel){
+                    for( var i = 0; i < data[data.nextLevel]().length; i++){
+                        rowSpan = rowSpan + getRowSpan(data[data.nextLevel]()[i]);
+                    }
+                }
+                else{
+                    rowSpan = 1;
+                }
+                return rowSpan;
+            }
+
             var plotData = function(data, startDate, endDate){
-                data().placements().forEach(item => {
+                data.forEach(item => {
                     if (startDate < item.startDate() && item.endDate() < endDate) {
                         setTimeout(function(){
                             var itemToBeSelected = [];
-                            var tds = $(element).children('td');
-                            for (let index = 1; index < tds.length; index++) {
+                            var tds = $(element).children('.can-select');
+                            for (let index = 0; index < tds.length; index++) {
                                 const td = tds[index];
                                 var context = ko.contextFor(td).$data;
                                 if(context.start.getTime() == item.startDate().getTime()){
@@ -56,18 +71,27 @@ define(['ko'], function(ko){
                             }
                             $(itemToBeSelected).addClass('ui-selected');
                             onSelectionDone();
-                        }, 1000);
+                        }, 200);
                     }
                 });
             }
-            plotData(data, calenderConfig.startDate(), calenderConfig.endDate());
-            var instance = $(element).selectable("instance");
+            plotData(events(), calenderConfig.startDate(), calenderConfig.endDate());
+            
+            events.subscribe(function(changes){
+                changes.forEach(function (change) {
+                    if (change.status == 'added'){
+                        console.log('ploting data');
+                        plotData([change.value], calenderConfig.startDate(), calenderConfig.endDate());
+                    }
+                })
+            }, null, "arrayChange")
 
             return {
                 templateRef: templateRef,
                 timeContext: timeContext,
                 calenderConfig: calenderConfig,
-                data: data
+                data: data,
+                getRowSpan: getRowSpan
             }
         },
         template: { require: 'text!app/selectable/selectable.html'},

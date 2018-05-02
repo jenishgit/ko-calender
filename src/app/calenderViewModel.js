@@ -1,6 +1,6 @@
 define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/templateConfig', 
-'app/calender/config/dateProvider', 'app/calender/bindings/draggable', 'app/calender/bindings/droppable'], 
-        function(ko, calenderSubComponentConfig, templateConfig, dateProvider){
+'app/calender/config/dateProvider', 'app/calender/bindings/draggable', 'app/calender/bindings/droppable', 'app/calender/utility/templateLoader'], 
+        function(ko, calenderSubComponentConfig, templateConfig, dateProvider, templateLoader){
     var calenderViewModel = function(){
         this.firstName = ko.observable('Bert');
         this.firstNameCaps = ko.pureComputed(function() {
@@ -12,20 +12,50 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
 
         var apartments = ko.observableArray([
             {
+                nextLevel: 'rooms',
                 name: ko.observable('Apt 01'),
-                placements: ko.observableArray([
+                rooms: ko.observableArray([
                     {
-                        startDate: ko.observable(new Date(2018, 4, 16)),
-                        endDate: ko.observable(new Date(2018, 4, 20))
+                        name: 'room1',
+                        placements: ko.observableArray([
+                            {
+                                startDate: ko.observable(new Date(2018, 4, 16)),
+                                endDate: ko.observable(new Date(2018, 4, 20))
+                            }
+                        ])
+                    },
+                    {
+                        name: 'room2',
+                        placements: ko.observableArray([
+                            {
+                                startDate: ko.observable(new Date(2018, 4, 26)),
+                                endDate: ko.observable(new Date(2018, 4, 28))
+                            }
+                        ])
                     }
                 ])
             },
             {
+                nextLevel: 'rooms',
                 name: ko.observable('Apt 02'),
-                placements: ko.observableArray([
+                rooms: ko.observableArray([
                     {
-                        startDate: ko.observable(new Date(2018, 4, 22)),
-                        endDate: ko.observable(new Date(2018, 4, 25))
+                        name: 'room1',
+                        placements: ko.observableArray([
+                            {
+                                startDate: ko.observable(new Date(2018, 4, 22)),
+                                endDate: ko.observable(new Date(2018, 4, 25))
+                            }
+                        ])
+                    },
+                    {
+                        name: 'room2',
+                        placements: ko.observableArray([
+                            {
+                                startDate: ko.observable(new Date(2018, 4, 30)),
+                                endDate: ko.observable(new Date(2018, 5, 2))
+                            }
+                        ])
                     }
                 ])
             }
@@ -57,10 +87,26 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
             }
         });
 
+        var placement = {
+            startDate: ko.observable(new Date(2018, 4, 26)),
+            endDate: ko.observable(new Date(2018, 4, 28))
+        }
+
+        var placement2 = {
+            startDate: ko.observable(new Date(2018, 4, 30)),
+            endDate: ko.observable(new Date(2018, 5, 2))
+        }
+
+        this.addPlacement = function(){
+            apartments()[0].rooms()[0].placements.push(placement);
+            apartments()[1].rooms()[0].placements.push(placement2);
+        }
+
         var calenderConfig = {
             cssClass: {
                 occupied: 'occupied'
             },
+            eventsObservablePath: 'placements',
             startDate: startDate,
             endDate: endDate,
             subComponentConfig: calenderSubComponentConfig,
