@@ -23,16 +23,31 @@ define(['ko', 'app/calender/utility/dateHelper','app/bindings/elementHandleBindi
             };
             //var timeContext = getTimeContext(dateTimeCollection);
 
-            dataSource().forEach(function (data){
+            var setTimeContext = function(data) {
                 if(data.nextLevel){
                     data[data.nextLevel]().forEach(function(data){
-                        data.timeContext = getTimeContext(dateTimeCollection);
+                        setTimeContext(data);
                     })
-                }
-                else {
+                } else {
                     data.timeContext = getTimeContext(dateTimeCollection);
                 }
-            });
+            }
+
+            dataSource().forEach(function (data){
+                setTimeContext(data);
+            })
+
+            // //TODO: remove hardcoded level logic
+            // dataSource().forEach(function (data){
+            //     if(data.nextLevel){
+            //         data[data.nextLevel]().forEach(function(data){
+            //             data.timeContext = getTimeContext(dateTimeCollection);
+            //         })
+            //     }
+            //     else {
+            //         data.timeContext = getTimeContext(dateTimeCollection);
+            //     }
+            // });
 
             
             

@@ -61,6 +61,108 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
             }
         ])
 
+        var buildings = ko.observableArray([
+            {
+                nextLevel: "apartments",
+                name: "building 1",
+                apartments : ko.observableArray([
+                    {
+                        nextLevel: 'beds',
+                        name: ko.observable('Apt 01'),
+                        beds: ko.observableArray([
+                            {
+                                name: 'bed 1',
+                                placements: ko.observableArray([
+                                    {
+                                        startDate: ko.observable(new Date(2018, 4, 16)),
+                                        endDate: ko.observable(new Date(2018, 4, 20))
+                                    }
+                                ])
+                            },
+                            {
+                                name: 'bed 2',
+                                placements: ko.observableArray([
+                                    {
+                                        startDate: ko.observable(new Date(2018, 4, 26)),
+                                        endDate: ko.observable(new Date(2018, 4, 28))
+                                    }
+                                ])
+                            }
+                        ])
+                    },
+                    {
+                        nextLevel: 'beds',
+                        name: ko.observable('Apt 02'),
+                        beds: ko.observableArray([
+                            {
+                                name: 'bed 1',
+                                placements: ko.observableArray([
+                                    {
+                                        startDate: ko.observable(new Date(2018, 4, 22)),
+                                        endDate: ko.observable(new Date(2018, 4, 25))
+                                    }
+                                ])
+                            }
+                        ])
+                    }
+                ])
+            },
+            {
+                nextLevel: "apartments",
+                name: "building 2",
+                apartments : ko.observableArray([
+                    {
+                        nextLevel: 'beds',
+                        name: ko.observable('Apt 01'),
+                        beds: ko.observableArray([
+                            {
+                                name: 'bed 1',
+                                placements: ko.observableArray([
+                                    {
+                                        startDate: ko.observable(new Date(2018, 4, 16)),
+                                        endDate: ko.observable(new Date(2018, 4, 20))
+                                    }
+                                ])
+                            },
+                            {
+                                name: 'bed 2',
+                                placements: ko.observableArray([
+                                    {
+                                        startDate: ko.observable(new Date(2018, 4, 26)),
+                                        endDate: ko.observable(new Date(2018, 4, 28))
+                                    }
+                                ])
+                            }
+                        ])
+                    },
+                    {
+                        nextLevel: 'beds',
+                        name: ko.observable('Apt 02'),
+                        beds: ko.observableArray([
+                            {
+                                name: 'bed 1',
+                                placements: ko.observableArray([
+                                    {
+                                        startDate: ko.observable(new Date(2018, 4, 22)),
+                                        endDate: ko.observable(new Date(2018, 4, 25))
+                                    }
+                                ])
+                            },
+                            {
+                                name: 'bed 2',
+                                placements: ko.observableArray([
+                                    {
+                                        startDate: ko.observable(new Date(2018, 4, 30)),
+                                        endDate: ko.observable(new Date(2018, 5, 2))
+                                    }
+                                ])
+                            }
+                        ])
+                    }
+                ])
+            }
+        ]);
+
         templateConfig.calenderHeaderTemplate('customcalenderHeaderTemplate');
         templateConfig.calenderDataTemplate('customCalenderDataTemplate');
 
@@ -111,7 +213,7 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
             endDate: endDate,
             subComponentConfig: calenderSubComponentConfig,
             templateConfig: templateConfig,
-            dataSource: apartments,
+            dataSource: buildings,
             dateTimeProvider: dateProvider.getValues,
             dragDropConfig:{
                 drag: dragConfig,
