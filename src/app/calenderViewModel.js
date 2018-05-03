@@ -1,6 +1,7 @@
 define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/templateConfig', 
-'app/calender/config/dateProvider', 'app/calender/bindings/draggable', 'app/calender/bindings/droppable', 'app/calender/utility/templateLoader'], 
-        function(ko, calenderSubComponentConfig, templateConfig, dateProvider, templateLoader){
+'app/calender/config/dateProvider', 'app/calender/bindings/draggable', 'app/calender/bindings/droppable', 
+'app/calender/utility/templateLoader', 'app/calender/utility/dateHelper'], 
+        function(ko, calenderSubComponentConfig, templateConfig, dateProvider, draggable, droppable, templateLoader, dateHelper){
     var calenderViewModel = function(){
         this.firstName = ko.observable('Bert');
         this.firstNameCaps = ko.pureComputed(function() {
@@ -200,8 +201,14 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
         }
 
         this.addPlacement = function(){
-            apartments()[0].rooms()[0].placements.push(placement);
-            apartments()[1].rooms()[0].placements.push(placement2);
+            buildings()[0].apartments()[0].beds()[0].placements.push(placement)
+            buildings()[1].apartments()[0].beds()[0].placements.push(placement2);
+            endDate(new Date(2018,5,10));
+        }
+
+        this.addDays = function() {
+            var newDate = dateHelper.addDays(endDate(), 10);
+            endDate(newDate);
         }
 
         var calenderConfig = {
