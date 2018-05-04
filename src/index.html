@@ -9,18 +9,28 @@
     </head>
     <body>
         <div data-bind="component: {name: 'ko-templateLoader', params: {templateURL: 'text!app/calender/config/templates.html', element: $element}}"></div>
-        <h1>Calender</h1>
+        <h1>Scheduler</h1>
+
+        <button data-bind="click: addPlacement">Add Placement</button>
+        <button data-bind="click: addDays">Add days</button>
+
         <ko-calender params="config: config"></ko-calender>
-        
         <script id="customcalenderHeaderTemplate" type="text/html">
-            <th>Building</th>
-            <th>Apartment</th>
-            <th>Room</th>
-            <!-- ko foreach: dateTimeCollection() -->
-            <th data-bind="template: $parent.templateRef">
-        
-            </th>
-            <!-- /ko -->
+            <tr>
+                <td colspan="3"></td>
+                <!-- ko foreach: groupings -->
+                    <td data-bind="text: text, attr: {colspan: colspanValue}"></td>
+                <!-- /ko -->
+            </tr>
+            <tr>
+                <th>Building</th>
+                <th>Apartment</th>
+                <th>Room</th>
+                <!-- ko foreach: dateTimeCollection() -->
+                <th data-bind="template: $parent.templateRef">
+                </th>
+                <!-- /ko -->
+            </tr>
         </script>
         
         <script id="customCalenderDataTemplate" type="text/html">
@@ -39,8 +49,7 @@
         </script>
 
         <br style="clear: both;" />
-        <p>First name: <input data-bind="value: firstName" /></p>
-        <p>First name capitalized: <strong data-bind="text: firstNameCaps"></strong></p>
+        
 
         <table class="calender-table">
             <tr>
@@ -49,7 +58,6 @@
             </tr>
         </table>
 
-        <button data-bind="click: addPlacement">Add Placement</button>
-        <button data-bind="click: addDays">Add days</button>
+        
     </body>
 </html>
