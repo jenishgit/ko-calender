@@ -201,15 +201,26 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
         }
 
         this.addPlacement = function(){
-            buildings()[0].apartments()[0].beds()[0].placements.push(placement)
+            buildings()[0].apartments()[0].beds()[0].placements.push(placement);
             buildings()[1].apartments()[0].beds()[0].placements.push(placement2);
-            endDate(new Date(2018,5,10));
         }
 
         this.addDays = function() {
             var newDate = dateHelper.addDays(endDate(), 10);
             endDate(newDate);
         }
+
+        var onBeforeEventCreated = function() {
+            var d = $.Deferred();
+            $('#myModal').modal('show');
+            $("#btnSave").click(function() {
+                d.resolve(true);
+            });
+            $('#myModal').on('hidden.bs.modal', function (e) {
+                d.resolve(false);
+              })
+            return d.promise();
+        };
 
         var calenderConfig = {
             cssClass: {
@@ -221,6 +232,9 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
             subComponentConfig: calenderSubComponentConfig,
             templateConfig: templateConfig,
             dataSource: buildings,
+            events: {
+                onBeforeEventCreated: onBeforeEventCreated
+            },
             dateTimeProvider: dateProvider.getValues,
             dragDropConfig:{
                 drag: dragConfig,

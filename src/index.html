@@ -3,6 +3,8 @@
     <head>
         <title>Calender Control</title>
         <link rel="stylesheet" type="text/css" href="content/site.css"/>
+        <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="../node_modules/jquery-ui-dist/jquery-ui.css"/>
         <!-- data-main attribute tells require.js to load
              scripts/main.js after require.js loads. -->
              <script src="../node_modules/requirejs/require.js" data-main="app"></script>
@@ -11,8 +13,30 @@
         <div data-bind="component: {name: 'ko-templateLoader', params: {templateURL: 'text!app/calender/config/templates.html', element: $element}}"></div>
         <h1>Scheduler</h1>
 
-        <button data-bind="click: addPlacement">Add Placement</button>
-        <button data-bind="click: addDays">Add days</button>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Criteria to select recurring/single booking goes here</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSave" class="btn btn-success" data-dismiss="modal">Done</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <button class="btn btn-info" data-bind="click: addPlacement">Add Placement</button>
+        <button class="btn btn-info" data-bind="click: addDays">Add days</button>
+
+        
 
         <ko-calender params="config: config"></ko-calender>
         <script id="customcalenderHeaderTemplate" type="text/html">
