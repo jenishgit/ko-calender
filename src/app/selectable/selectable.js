@@ -16,7 +16,14 @@ define(['ko', 'app/calender/utility/dataSelector'], function(ko, dataSelector){
                 selected: function(event, ui) {
                 },
                 stop: function(event, ui){
-                    onSelectionDone();
+                    calenderConfig.events.onBeforeEventCreated().done(function(result){
+                        if(result){
+                            onSelectionDone();
+                        }
+                        else {
+                            $('.ui-selected').removeClass('ui-selected')
+                        }
+                    })
                 }
             });
 
