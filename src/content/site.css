@@ -2,14 +2,26 @@
 #selectable .ui-selected { background: #CCC; color: black; }
 
 .calender-table tr td,th {
-    border:1px solid #000;
-    width: 30px;
-    height: 30px;
+    border:1px solid #000 !important;
+    width: 30px !important;
+    height: 30px !important;
     text-align: center;
     margin: auto;
 }
 
+.table td,  {
+    max-width: 30px !important;
+}
 
+.table > thead > tr > th {
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle !important;
+    text-align: center !important;
+}
 
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */

@@ -41,9 +41,9 @@
         <ko-calender params="config: config"></ko-calender>
         <script id="customcalenderHeaderTemplate" type="text/html">
             <tr>
-                <td colspan="3"></td>
+                <th colspan="3"></th>
                 <!-- ko foreach: groupings -->
-                    <td data-bind="text: text, attr: {colspan: colspanValue}"></td>
+                    <th data-bind="text: text, attr: {colspan: colspanValue}"></th>
                 <!-- /ko -->
             </tr>
             <tr>
@@ -75,12 +75,12 @@
         <br style="clear: both;" />
         
 
-        <table class="calender-table">
+        <!-- <table class="calender-table">
             <tr>
                 <td style="width: 150px; height: 150ox"><div id="draggable" data-bind="draggable: config.dragDropConfig.drag">Drag</div></td>
                 <td style="width: 150px; height: 150ox"><div id="droppable" data-bind="droppable: config.dragDropConfig.drop">Drop</div></td>
             </tr>
-        </table>
+        </table> -->
 
         
     </body>
