@@ -206,7 +206,7 @@ define(['ko', 'app/calender/config/subComponentConfig', 'app/calender/config/tem
         }
 
         this.addDays = function() {
-            var newDate = dateHelper.addDays(endDate(), 10);
+            var newDate = dateHelper.addDays(endDate(), 5);
             endDate(newDate);
         }
 
